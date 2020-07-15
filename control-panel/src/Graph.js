@@ -7,9 +7,36 @@ class Graph extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            graphData: this.props.data
+            graphData: {}
         }
     }
+
+    componentWillMount(){
+        this.getGraphData()
+    }
+
+    async getGraphData() {
+        const response = await fetch('http://localhost:8000/admin/16');
+        const result = await response.json();
+        
+        let time = [];
+        let temperature = [];
+        result.forEach(data => {
+            time.push(data.time);
+            temperature.push(data.temperature);
+        });
+        
+        this.setState({
+            graphData: {
+                labels: time,
+                datasets: [{
+                    label: "Temperature",
+                    data: temperature
+                }]
+            }
+        });
+    }
+    
 
     render() {
         return (

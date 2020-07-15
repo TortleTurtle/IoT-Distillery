@@ -21,5 +21,21 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  justify-content: space-evenly;
   flex-basis: 40%;
+}
+
+.button {
+  width: 10%;
+  height: auto;
+  text-align: center;
+}
+#start {
+  background-color: green;
+}
+#stop {
+  background-color: red;
+}
+#new{
+  background-color: orangered;
 }
