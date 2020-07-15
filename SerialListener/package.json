@@ -1,0 +1,16 @@
+{
+  "name": "SerialListener",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node serialReader.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.6.0",
+    "serialport": "^9.0.0"
+  }
+}

@@ -13,9 +13,10 @@ router.get('/', async (req, res) => {
 })
 //post temperature data
 router.post("/", async (req, res) => {
-    const temp = req.query.temp;
+    console.log(req.body);
+    const temp = req.body.temp;
     let response = {};
-    if (req.query.temp) {
+    if (temp) {
         try {
             const query = `INSERT INTO datatime (session_id, \`time\`, temperature) VALUES (${session}, CURRENT_TIME, ${temp})`;
             const connection = await mysql.createConnection({
