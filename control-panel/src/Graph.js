@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Line} from 'react-chartjs-2';
 import './App.css';
 
-
 class Graph extends Component{
     constructor(props) {
         super(props);
@@ -16,9 +15,17 @@ class Graph extends Component{
     }
 
     async getGraphData() {
-        const response = await fetch('http://localhost:8000/admin/16');
+        console.log("fetching");
+        console.log(process.env.BASE_URL);
+        const response = await fetch(process.env.REACT_APP_BASE_URL + '/16', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
         const result = await response.json();
-        
+        console.log(result);
+
         let time = [];
         let temperature = [];
         result.forEach(data => {

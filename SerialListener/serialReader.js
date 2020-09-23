@@ -1,7 +1,7 @@
 const SerialPort = require('serialport');
-const Readline = require('@serialport/parser-readline');
+const Delimiter = require('@serialport/parser-delimiter');
 const port = new SerialPort('COM4', {baudRate: 9600 });
-const parser = port.pipe(new Readline('/n'));
+const parser = port.pipe(new Delimiter({ delimiter: "[" }));
 
 const fetch = require("node-fetch");
 const url = "http://localhost:8000";
@@ -9,7 +9,11 @@ const url = "http://localhost:8000";
 // Read the port data
 parser.on('data', function (data) {
     console.log(data);
-    postTemperature(url, data);
+    let string = data.toString();
+    console.log(string);
+    let splitString = string.split("]");
+    console.log(splitString[0]);
+    //postTemperature(url, data);
 });
 
 async function postTemperature(url, temp) {

@@ -35,7 +35,7 @@ router.put('/', async (req, res) => {
     //Send back message if no queries are present.
     if (Object.keys(req.query).length < 1) {
       res.status(400);
-      response.message = "Use the query 'state' to start, stop or pause distilling. Use temp to set target temperature";
+      response.message = "Use the query 'state' to start or stop distilling. Use temp to set target temperature";
     }
     //set state of the process
     if (req.query.state){

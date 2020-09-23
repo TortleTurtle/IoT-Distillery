@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 require('dotenv/config');
 
 //global variables
-global.state = "stop"
+global.state = false;
 global.session = 16;
 global.temp = 0;
 

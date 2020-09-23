@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import Graph from './Graph';
-import './App.css';
 import Buttons from './Buttons';
+import './App.css';
+require('dotenv/config');
 
 class App extends Component {
   constructor(props) {
