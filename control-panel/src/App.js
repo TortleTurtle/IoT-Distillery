@@ -8,10 +8,9 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      session: null,
-      state: null,
-    }
+    window.session = 0;
+    window.state = false;
+    window.targetTemp = 0;
   }
 
   render() {

@@ -6,25 +6,21 @@ class Graph extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            graphData: {}
+            graphData: {},
+            currentTemp: 0
         }
-    }
-
-    componentWillMount(){
-        this.getGraphData()
+        this.getGraphData();
+        setInterval( () => this.getGraphData(), 5000);
     }
 
     async getGraphData() {
-        console.log("fetching");
-        console.log(process.env.BASE_URL);
-        const response = await fetch(process.env.REACT_APP_BASE_URL + '/16', {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/${window.session}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
             }
         });
         const result = await response.json();
-        console.log(result);
 
         let time = [];
         let temperature = [];
@@ -32,7 +28,8 @@ class Graph extends Component{
             time.push(data.time);
             temperature.push(data.temperature);
         });
-        
+        let lastTemp = temperature[temperature.length - 1];
+
         this.setState({
             graphData: {
                 labels: time,
@@ -40,7 +37,8 @@ class Graph extends Component{
                     label: "Temperature",
                     data: temperature
                 }]
-            }
+            },
+            currentTemp: lastTemp
         });
     }
     
@@ -49,6 +47,11 @@ class Graph extends Component{
         return (
             <div className="collumn" id="graph">
                 <Line data={this.state.graphData}/>
+            <div>
+                <h3>Current Temerature: {this.state.currentTemp}</h3>
+                <h3>Target Temperature: {window.targetTemp}</h3>
+                <h3>Current State: {String(window.state)}</h3>
+                </div>
             </div>
         );
     }

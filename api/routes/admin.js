@@ -70,6 +70,7 @@ router.post('/', async (req, res) => {
     await connection.close();
 
     response.session = session;
+    
     res.send(response);
 });
 

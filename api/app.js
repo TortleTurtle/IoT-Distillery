@@ -5,7 +5,7 @@ require('dotenv/config');
 
 //global variables
 global.state = false;
-global.session = 16;
+global.session = 0;
 global.temp = 0;
 
 const app = express();

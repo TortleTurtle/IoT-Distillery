@@ -8,13 +8,14 @@ const url = "http://localhost:8000";
 
 // Read the port data
 parser.on('data', function (data) {
-    console.log(data);
     let string = data.toString();
-    console.log(string);
     let splitString = string.split("]");
-    console.log(splitString[0]);
-    //postTemperature(url, data);
+    console.log(`current temperature: ${splitString[0]}`);
+    postTemperature(url, splitString[0]);
 });
+
+//set an interval to keep updating the state and target temperature.
+setInterval( () => getStateTemp(), 2000); //2 seconds
 
 async function postTemperature(url, temp) {
   try {
@@ -28,10 +29,33 @@ async function postTemperature(url, temp) {
       }),
     });
 
-    const json = await response.json();
+    const decodedRes = await response.json();
 
-    console.log(json);
-    return json;
+    console.log(decodedRes);
+    return true;
+  } catch (e) {
+    throw e;
+  }
+}
+
+async function getStateTemp() {
+  try {
+    const response = await fetch(`${url}/arduino/`, {
+      method: "GET",
+      headers: {
+        "Accept": "application/json"
+      }
+    });
+
+    const decodRes = await response.json();
+    console.log(decodRes);
+
+    //form data into a string so it can be send over serial.
+    const string = `<${decodRes.state}, ${decodRes.temp}>`;
+    console.log(string);
+
+    //send to arduino via serial.
+    parser.write(string);
   } catch (e) {
     throw e;
   }

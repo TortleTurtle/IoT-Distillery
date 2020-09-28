@@ -26,7 +26,8 @@
 }
 
 .button {
-  width: 10%;
+  min-width: 10%;
+  max-width: 20%;
   height: auto;
   text-align: center;
 }
@@ -36,6 +37,10 @@
 #stop {
   background-color: red;
 }
-#new{
+#new {
   background-color: orangered;
+}
+#temp {
+  background-color: blue;
+  color: white;
 }
