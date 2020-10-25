@@ -8,7 +8,7 @@ const url = "http://localhost:8000";
 
 // Read the port data
 parser.on('data', function (data) {
-    let string = data.toString();
+    let string = data.toString('ascii');
     let splitString = string.split("]");
     console.log(`current temperature: ${splitString[0]}`);
     postTemperature(url, splitString[0]);
