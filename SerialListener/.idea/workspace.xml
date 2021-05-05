@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="590e65c4-501e-46f9-b758-faeeac27b042" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/serialReader.js" beforeDir="false" afterPath="$PROJECT_DIR$/serialReader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../api/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../api/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../arduino/IoT-Distillery.ino" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../control-panel/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../control-panel/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../control-panel/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../control-panel/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../control-panel/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../control-panel/src/App.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +34,7 @@
       <updated>1619728830274</updated>
       <workItem from="1619728831334" duration="2292000" />
       <workItem from="1620042922526" duration="3192000" />
+      <workItem from="1620230414834" duration="84000" />
     </task>
     <servers />
   </component>
