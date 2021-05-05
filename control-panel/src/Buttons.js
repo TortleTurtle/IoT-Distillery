@@ -12,7 +12,7 @@ class Buttons extends Component {
     
     async startSession() {
         console.log("starting the session");
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/?state=true`, {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/?state=1`, {
             method: "PUT",
             headers: {
                 "Accept": "application/json"
@@ -25,7 +25,7 @@ class Buttons extends Component {
 
     async stopSession() {
         console.log("stopped the session");
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/?state=false`, {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/?state=0`, {
             method: "PUT",
             headers: {
               "Accept": "application/json",

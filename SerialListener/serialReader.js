@@ -1,6 +1,7 @@
 const SerialPort = require('serialport');
 const Delimiter = require('@serialport/parser-delimiter');
-const port = new SerialPort('COM4', {baudRate: 9600 });
+//Define serial port here. For me its COM7, standard baudRate is 9600.
+const port = new SerialPort('COM7', {baudRate: 9600 });
 const parser = port.pipe(new Delimiter({ delimiter: "[" }));
 
 const fetch = require("node-fetch");
@@ -9,13 +10,13 @@ const url = "http://localhost:8000";
 // Read the port data
 parser.on('data', function (data) {
     let string = data.toString();
+    console.log(string);
     let splitString = string.split("]");
     console.log(`current temperature: ${splitString[0]}`);
     postTemperature(url, splitString[0]);
+    //reply with state and temperature
+    getStateTemp();
 });
-
-//set an interval to keep updating the state and target temperature.
-setInterval( () => getStateTemp(), 2000); //2 seconds
 
 async function postTemperature(url, temp) {
   try {
@@ -38,6 +39,7 @@ async function postTemperature(url, temp) {
   }
 }
 
+//Uses a get request to get the data from the express-API and write it to the serial port.
 async function getStateTemp() {
   try {
     const response = await fetch(`${url}/arduino/`, {
@@ -55,7 +57,7 @@ async function getStateTemp() {
     console.log(string);
 
     //send to arduino via serial.
-    parser.write(string);
+    port.write(string);
   } catch (e) {
     throw e;
   }

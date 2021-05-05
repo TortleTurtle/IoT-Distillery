@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    window.session = 0;
+    window.session = 5;
     window.state = false;
     window.targetTemp = 0;
   }

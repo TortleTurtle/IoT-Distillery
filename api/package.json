@@ -1,4 +1,4 @@
-{
+ {
   "name": "iot-distillery",
   "version": "1.0.0",
   "description": "A back-end webservice to control a Arduino powered distillery",

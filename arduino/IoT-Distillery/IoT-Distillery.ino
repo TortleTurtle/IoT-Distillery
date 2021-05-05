@@ -1,6 +1,6 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
- 
+
 // Define pins
 #define TEMP_SENSOR 2
 #define RELAIS 3
@@ -23,10 +23,9 @@ const float ethanolTemp = 78.37;
 const byte numChars = 32;
 char receivedChars[numChars];
 char tempChars[numChars];        // temporary array for use when parsing
-char reciever = "";
 boolean newData = false;
 
-char state = "false";
+int state = 0;    //0 is off, 1 is on.
 float currentTemp;
 float targetTemp;
 
@@ -34,7 +33,7 @@ void setup(void) {
   // start serial port
   Serial.begin(9600);
   Serial.println("Expecting true or false for state and a float for temperature");
-  Serial.println("Enter data in this style <false, 64.2>");
+  Serial.println("Enter data in this style <0, 64.2>");
   Serial.println();
 
   //set Relais pin to output mode
@@ -45,7 +44,7 @@ void setup(void) {
   sensors.begin();
 
   //start the interval timer
-  startMillis = millis();  
+  startMillis = millis();
 }
  
 void loop(void) {
@@ -74,7 +73,7 @@ void loop(void) {
 //==========
 
 void checkTemperature(void) {
-  if (currentTemp > targetTemp && state == "false") {
+  if (currentTemp > targetTemp || state == 0) {
     //turn off relais
     digitalWrite(RELAIS, HIGH); //relais is set to Normally Open, to close it you need to send a signal.
   } else {
@@ -129,13 +128,13 @@ void parseData() {      // split the data into its parts
     char * strtokIndx; // this is used by strtok() as an index
  
     strtokIndx = strtok(tempChars, ","); // this continues where the previous call left off
-    strcpy(state, strtokIndx);   // copy state to variable.integer
+    state = atoi(strtokIndx);  // convert to integer
 
     strtokIndx = strtok(NULL, ",");
     targetTemp = atof(strtokIndx);     // convert this part to a float
 }
 
 void showParsedData() {
-    Serial.println("State: " + state);
+    Serial.println("State: " + String(state));
     Serial.println("Target Temp: " + String(targetTemp));
 }

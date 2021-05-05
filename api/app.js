@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 require('dotenv/config');
 
 //global variables
-global.state = false;
-global.session = 0;
+global.state = 0;
+global.session = 5;
 global.temp = 0;
 
 const app = express();

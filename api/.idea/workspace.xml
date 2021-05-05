@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="64bbba5d-2f04-4a45-a94f-eb3baa93ed08" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../SerialListener/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../SerialListener/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerialListener/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../SerialListener/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerialListener/serialReader.js" beforeDir="false" afterPath="$PROJECT_DIR$/../SerialListener/serialReader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/IoT-Distillery.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../arduino/SerialCom_Test.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../control-panel/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../control-panel/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../control-panel/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../control-panel/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../control-panel/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../control-panel/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../control-panel/src/Buttons.js" beforeDir="false" afterPath="$PROJECT_DIR$/../control-panel/src/Buttons.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1rrJfeWUkqwwhFtWU0xL6cGAAX5" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="64bbba5d-2f04-4a45-a94f-eb3baa93ed08" name="Default Changelist" comment="" />
+      <created>1619728382226</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1619728382226</updated>
+      <workItem from="1619728384902" duration="2761000" />
+      <workItem from="1619767684176" duration="3562000" />
+      <workItem from="1619806024001" duration="752000" />
+      <workItem from="1620125936793" duration="4533000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
