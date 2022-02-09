@@ -14,7 +14,7 @@ private:
 public:
     RelayController(float targetTemp, bool state, int oneWirePin, int relayPin);
 
-    //override is not necessary but is good practice.
+    //override is not necessary when using virtual but is good practice.
     void update() override;
 };
 

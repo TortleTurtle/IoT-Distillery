@@ -30,4 +30,4 @@ add_custom_target(
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-add_executable(Z_DUMMY_TARGET ${SRC_LIST} src/RelayController.cpp src/RelayController.h)
+add_executable(Z_DUMMY_TARGET ${SRC_LIST} "src/Temperature Controllers/RelayController.cpp" include/RelayController.h "src/Temperature Controllers/ServoController.cpp" "include/ServoController.h")
