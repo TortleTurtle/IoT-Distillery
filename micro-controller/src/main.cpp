@@ -1,14 +1,24 @@
 #include <Arduino.h>
+#include "global.h"
 #include "TemperatureController.h"
+#include "RelayController.h"
+#include "ICommunicationHandler.h"
+#include "SerialCommunicationHandler.h"
 
 //using a pointer to declare
-TemperatureController* tempController;
+TemperatureState startingTemp_State = {64.5, false};
+TemperatureController* tempController =new RelayController(startingTemp_State, 1, 2);
+ICommunicationHandler* communicationHandler;
 
 void setup() {
-    //creating a Temperature controller and assigning it to the pointer.
-    tempController = new TemperatureController(65.0, false, 1);
+    pinMode(LED_BUILTIN, OUTPUT);
+    Serial.begin(9600);
+    communicationHandler = new SerialCommunicationHandler();
+    tempController->begin();
 }
 
 void loop() {
     tempController->update();
+    communicationHandler->receiveData();
+    communicationHandler->parseData();
 }

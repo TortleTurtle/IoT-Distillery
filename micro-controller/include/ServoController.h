@@ -11,8 +11,8 @@ class ServoController : public TemperatureController {
 private:
     int servoPin;
 public:
-    ServoController(float targetTemp, bool state, int oneWirePin, int servoPin);
-    void update() override
+    ServoController(TemperatureState temperatureState, int oneWirePin, int servoPin);
+    void update() override;
 };
 
 

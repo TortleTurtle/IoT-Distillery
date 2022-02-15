@@ -7,19 +7,22 @@
 
 #include "OneWire.h"
 #include "DallasTemperature.h"
+#include "global.h"
 
 class TemperatureController {
+public:
+    //pure virtual function. This makes it an abstract class.
+    virtual void update() = 0;
+
+    TemperatureController(TemperatureState temperatureState, int oneWirePin);
+    void begin();
+    float getCurrentTemperature();
+    void setTargetTemp_State(TemperatureState newTemp_State); //set a new target temperature and state.
+
 protected:
-    float targetTemperature;
-    bool state;
+    TemperatureState targetTemp_State{};
     OneWire oneWire;
     DallasTemperature sensor;
-public:
-    TemperatureController(float targetTemp, bool state, int oneWirePin);
-    void setTargetTemperature(float targetTemp);
-    float getCurrentTemperature();
-    void setState(bool newState);
-    virtual void update();
 };
 
 

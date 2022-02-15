@@ -1,19 +1,18 @@
 //
 // Created by danie on 09/02/2022.
 //
-
-#include "RelayController.h"
 #include <Arduino.h>
+#include "RelayController.h"
 
 //classes in C++ need to call parent constructor before being able to call own constructor.
-RelayController::RelayController(float targetTemp, bool state, int oneWirePin, int relayPin)
-        : TemperatureController(targetTemp, state, oneWirePin) {
+RelayController::RelayController(TemperatureState temperatureState, int oneWirePin, int relayPin)
+        : TemperatureController(temperatureState, oneWirePin) {
     RelayController::relayPin = relayPin;
 }
 
 void RelayController::update() {
     float currentTemp = getCurrentTemperature();
-    if (targetTemperature > currentTemp) {
+    if (targetTemp_State.temperature > currentTemp && targetTemp_State.state) {
         digitalWrite(relayPin, HIGH);
     } else {
         digitalWrite(relayPin, LOW);

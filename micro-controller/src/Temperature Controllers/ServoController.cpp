@@ -4,12 +4,11 @@
 
 #include "ServoController.h"
 
-ServoController::ServoController(float targetTemp, bool state, int oneWirePin, int servoPin)
-        : TemperatureController(targetTemp, state, oneWirePin) {
+ServoController::ServoController(TemperatureState temperatureState, int oneWirePin, int servoPin)
+        : TemperatureController(temperatureState, oneWirePin) {
     ServoController::servoPin = servoPin;
 }
 
 void ServoController::update() {
-    TemperatureController::update();
     //set servo to certain amount of degrees based on temperature.
 }

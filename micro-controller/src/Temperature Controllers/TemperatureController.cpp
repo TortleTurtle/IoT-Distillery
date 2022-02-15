@@ -5,16 +5,13 @@
 #include "TemperatureController.h"
 #include "OneWire.h"
 #include "DallasTemperature.h"
-#include <Arduino.h>
 
-TemperatureController::TemperatureController(float targetTemp, bool state, int oneWirePin) {
-    targetTemperature = targetTemp;
-    TemperatureController::state = state;
+TemperatureController::TemperatureController(TemperatureState temperatureState, int oneWirePin) {
+    targetTemp_State = temperatureState;
 
     //create OneWire object and pass reference to DallasTemperature.
     oneWire = OneWire(oneWirePin);
     sensor = DallasTemperature(&oneWire);
-    sensor.begin();
 }
 
 float TemperatureController::getCurrentTemperature() {
@@ -23,15 +20,10 @@ float TemperatureController::getCurrentTemperature() {
     return sensor.getTempCByIndex(0);
 }
 
-void TemperatureController::setTargetTemperature(float targetTemp) {
-    targetTemperature = targetTemp;
+void TemperatureController::setTargetTemp_State(TemperatureState newTemp_State) {
+    targetTemp_State = newTemp_State;
 }
 
-void TemperatureController::setState(bool newState) {
-    state = newState;
-}
-
-void TemperatureController::update() {
-    float currentTemp = getCurrentTemperature();
-    Serial.print(currentTemp);
+void TemperatureController::begin() {
+    sensor.begin();
 }
