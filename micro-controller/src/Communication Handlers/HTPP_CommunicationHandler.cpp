@@ -8,6 +8,11 @@ HTPP_CommunicationHandler::HTPP_CommunicationHandler(const char *ssid, const cha
     WiFi.mode(WIFI_STA);
     WiFiMulti.addAP(ssid, password); //information to connect with Wi-Fi Network.
     apiUrl = url;
+
+    JSON = "";
+
+    startMillis = millis();
+    currentMillis = millis();
 }
 
 void HTPP_CommunicationHandler::receiveData() {
@@ -26,9 +31,10 @@ void HTPP_CommunicationHandler::receiveData() {
 
                 // Server responded with a file.
                 if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {
-                    recievedJSON = http.getString();
+                    String receivedJSON = http.getString();
                     Serial.print("Recieved payload: ");
-                    Serial.println(recievedJSON);
+                    Serial.println(receivedJSON);
+                    parseData();
                     http.end();
                 }
             } else {
@@ -42,7 +48,7 @@ void HTPP_CommunicationHandler::receiveData() {
 
 void HTPP_CommunicationHandler::parseData() {
     Serial.println("Parsing json");
-    DeserializationError error = deserializeJson(document, recievedJSON);
+    DeserializationError error = deserializeJson(document, JSON);
 
     if (!error) {
         TemperatureState parsedJson = {document["temp"], document["state"]};
@@ -99,5 +105,11 @@ void HTPP_CommunicationHandler::sendTemperature(float temp) {
 }
 
 void HTPP_CommunicationHandler::update() {
-    //TODO: Timer function.
+    //timer to send GET and POST request.
+    currentMillis = millis();
+    if (currentMillis - startMillis >= 1000 * 60) {
+        receiveData();
+        sendTemperature(TemperatureController::getCurrentTemperature());
+        startMillis = currentMillis;
+    }
 }

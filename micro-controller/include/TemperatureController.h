@@ -17,8 +17,9 @@ public:
 
     TemperatureController(TemperatureState temperatureState, int oneWirePin);
     void begin();
-    float getCurrentTemperature();
-    //static member function so other classes can call on it.
+
+    //static member functions so other classes can call on it.
+    static float getCurrentTemperature();
     static void setTargetTemp_State(TemperatureState newTemp_State); //set a new target temperature and state.
 
 protected:

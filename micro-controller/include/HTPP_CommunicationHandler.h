@@ -22,7 +22,10 @@ private:
     HTTPClient http;
     String apiUrl;
     DynamicJsonDocument document = DynamicJsonDocument(64);
-    String recievedJSON;
+    String JSON;
+
+    unsigned long startMillis;
+    unsigned long currentMillis;
 
 public:
     explicit HTPP_CommunicationHandler(const char *ssid, const char *password, const String& url);

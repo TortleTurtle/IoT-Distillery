@@ -8,6 +8,9 @@ SerialCommunicationHandler::SerialCommunicationHandler() {
     messagePosition = 0;
     receiving = false;
     newData = false;
+
+    startMillis = millis();
+    currentMillis = millis();
 }
 
 void SerialCommunicationHandler::receiveData() {
@@ -23,10 +26,11 @@ void SerialCommunicationHandler::receiveData() {
             case '>':
                 //stop receiving and parse the incoming data.
                 receiving = false;
-                newData = true;
                 strcpy(receivedData, incomingData); //copy incoming data into receivedData for further parsing.
                 memset(incomingData, 0, sizeof(incomingData)); //resetting incomingData array.
-                messagePosition = 0;
+                messagePosition = 0; //setting position back to 0
+
+                newData = true; //setting new data to true so parseData knows it has to parse.
                 break;
             default:
                 if (receiving) {
@@ -67,5 +71,13 @@ void SerialCommunicationHandler::sendTemperature(float temp) {
 }
 
 void SerialCommunicationHandler::update() {
-    //TODO: Timer function
+    receiveData();
+    parseData();
+
+    //timer to send temperature every minute.
+    currentMillis = millis();
+    if (currentMillis - startMillis >= 1000 * 60) {
+        sendTemperature(TemperatureController::getCurrentTemperature());
+        startMillis = currentMillis;
+    }
 }

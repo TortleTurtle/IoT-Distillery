@@ -19,6 +19,9 @@ private:
     bool receiving;
     bool newData;
 
+    unsigned long startMillis;
+    unsigned long currentMillis;
+
 public:
     explicit SerialCommunicationHandler();
     void sendTemperature(float temp) override;

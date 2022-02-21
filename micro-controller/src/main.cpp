@@ -6,18 +6,17 @@
 #include "SerialCommunicationHandler.h"
 #include "HTPP_CommunicationHandler.h"
 
-TemperatureState startingTemp_State = {64.5, false};
-TemperatureController* tempController = new RelayController(startingTemp_State, 1, 2);
+TemperatureController* tempController = new RelayController({64.5, false}, D1, D4);
 ICommunicationHandler* communicationHandler;
 
 void setup() {
     Serial.begin(9600);
-    communicationHandler = new  HTPP_CommunicationHandler("HuizeKordaat", "CoronaKanjers1", "http://192.168.178.229:8000/arduino");
+    //communicationHandler = new HTPP_CommunicationHandler("HuizeKordaat", "CoronaKanjers1", "http://192.168.178.229:8000/arduino");
+    //communicationHandler = new SerialCommunicationHandler();
     tempController->begin();
-    communicationHandler->receiveData();
-    communicationHandler->sendTemperature(20);
 }
 
 void loop() {
     tempController->update();
+    communicationHandler->update();
 }
