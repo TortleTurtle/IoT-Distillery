@@ -24,7 +24,7 @@ public:
     void sendTemperature(float temp) override;
     void parseData() override;
     void receiveData() override;
-    void showParsedData() override;
+
     void update() override;
 };
 

@@ -6,6 +6,9 @@
 #include "OneWire.h"
 #include "DallasTemperature.h"
 
+//initialise static member variable.
+TemperatureState TemperatureController::targetTemp_State = {};
+
 TemperatureController::TemperatureController(TemperatureState temperatureState, int oneWirePin) {
     targetTemp_State = temperatureState;
 
@@ -22,6 +25,7 @@ float TemperatureController::getCurrentTemperature() {
 
 void TemperatureController::setTargetTemp_State(TemperatureState newTemp_State) {
     targetTemp_State = newTemp_State;
+    Serial.println("new temperature " + String(targetTemp_State.temperature) + "new state: " + String(targetTemp_State.state));
 }
 
 void TemperatureController::begin() {

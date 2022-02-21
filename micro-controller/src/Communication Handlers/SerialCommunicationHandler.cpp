@@ -2,9 +2,7 @@
 // Created by danie on 10/02/2022.
 //
 
-#include <Arduino.h>
 #include "SerialCommunicationHandler.h"
-#include "global.h"
 
 SerialCommunicationHandler::SerialCommunicationHandler() {
     messagePosition = 0;
@@ -21,11 +19,9 @@ void SerialCommunicationHandler::receiveData() {
             case '<':
                 //start receiving characters
                 receiving = true;
-                digitalWrite(LED_BUILTIN, HIGH);
                 break;
             case '>':
                 //stop receiving and parse the incoming data.
-                digitalWrite(LED_BUILTIN, LOW);
                 receiving = false;
                 newData = true;
                 strcpy(receivedData, incomingData); //copy incoming data into receivedData for further parsing.
@@ -53,23 +49,23 @@ void SerialCommunicationHandler::parseData() {
         strtokIndx = strtok(NULL, ","); //passing null because the original string is still in the buffer of strtok.
         parsedData.state = atoi(strtokIndx); // convert string to int.
 
+        //log parsed serial data.
         Serial.print("Target Temp: ");
         Serial.println(parsedData.temperature);
         Serial.print("State: ");
         Serial.println(parsedData.state);
 
+        //send parsed data to TemperatureController.
+        TemperatureController::setTargetTemp_State(parsedData);
+
         newData = false;
     }
 }
 
-void SerialCommunicationHandler::showParsedData() {
-
-}
-
 void SerialCommunicationHandler::sendTemperature(float temp) {
-
+    Serial.println("[" + String(temp) + "]");
 }
 
 void SerialCommunicationHandler::update() {
-
+    //TODO: Timer function
 }
