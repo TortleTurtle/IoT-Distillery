@@ -6,21 +6,19 @@
 #include "OneWire.h"
 #include "DallasTemperature.h"
 
-//initialise static member variable.
+//initialise static member variables.
 TemperatureState TemperatureController::targetTemp_State = {};
+DallasTemperature *TemperatureController::sensor = {};
 
-TemperatureController::TemperatureController(TemperatureState temperatureState, int oneWirePin) {
+TemperatureController::TemperatureController(TemperatureState temperatureState, DallasTemperature *dallasTemperature) {
     targetTemp_State = temperatureState;
-
-    //create OneWire object and pass reference to DallasTemperature.
-    oneWire = OneWire(oneWirePin);
-    sensor = DallasTemperature(&oneWire);
+    sensor = dallasTemperature;
 }
 
 float TemperatureController::getCurrentTemperature() {
-    sensor.requestTemperatures();
+    sensor->requestTemperatures();
     //returning index 0 because there is only one sensor attached.
-    return sensor.getTempCByIndex(0);
+    return sensor->getTempCByIndex(0);
 }
 
 void TemperatureController::setTargetTemp_State(TemperatureState newTemp_State) {
@@ -29,5 +27,5 @@ void TemperatureController::setTargetTemp_State(TemperatureState newTemp_State) 
 }
 
 void TemperatureController::begin() {
-    sensor.begin();
+    sensor->begin();
 }

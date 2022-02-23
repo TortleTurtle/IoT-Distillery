@@ -15,8 +15,8 @@ public:
     //pure virtual function. This makes it an abstract class.
     virtual void update() = 0;
 
-    TemperatureController(TemperatureState temperatureState, int oneWirePin);
-    void begin();
+    TemperatureController(TemperatureState temperatureState, DallasTemperature *dallasTemperature);
+    static void begin();
 
     //static member functions so other classes can call on it.
     static float getCurrentTemperature();
@@ -25,8 +25,7 @@ public:
 protected:
     //static member variable so it has an allocated place in the memory. Shared across all instances.
     static TemperatureState targetTemp_State;
-    OneWire oneWire;
-    DallasTemperature sensor;
+    static DallasTemperature *sensor;
 };
 
 

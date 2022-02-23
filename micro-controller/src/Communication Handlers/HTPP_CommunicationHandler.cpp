@@ -68,6 +68,7 @@ void HTPP_CommunicationHandler::parseData() {
 }
 
 void HTPP_CommunicationHandler::sendTemperature(float temp) {
+    Serial.println("Sending temperature: " + String(temp));
     //check connection to wifi.
     if (WiFiMulti.run() == WL_CONNECTED) {
         Serial.println("Connected to Wi-Fi");

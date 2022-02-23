@@ -6,12 +6,14 @@
 #define MICRO_CONTROLLER_SERVOCONTROLLER_H
 
 #include "TemperatureController.h"
+#include "Servo.h"
 
 class ServoController : public TemperatureController {
 private:
-    int servoPin;
+
+    Servo servo;
 public:
-    ServoController(TemperatureState temperatureState, int oneWirePin, int servoPin);
+    ServoController(TemperatureState temperatureState, DallasTemperature *dallasTemperature, int pin);
     void update() override;
 };
 

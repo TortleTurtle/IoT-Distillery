@@ -12,7 +12,7 @@ class RelayController : public TemperatureController {
 private:
     int relayPin;
 public:
-    RelayController(TemperatureState temperatureState, int oneWirePin, int relayPin);
+    RelayController(TemperatureState temperatureState, DallasTemperature *dallasTemperature, int relayPin);
 
     //override is not necessary when using virtual but is good practice.
     void update() override;
