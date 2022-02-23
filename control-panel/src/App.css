@@ -30,6 +30,7 @@
   max-width: 20%;
   height: auto;
   text-align: center;
+  cursor: pointer;
 }
 #start {
   background-color: green;
