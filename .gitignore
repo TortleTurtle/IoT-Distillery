@@ -1,7 +1,7 @@
-\images
-node_modules/
+/images
+*/node_modules
 .env/
-*\.idea
+*/.idea
 
 .pio
 CMakeListsPrivate.txt

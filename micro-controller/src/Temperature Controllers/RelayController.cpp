@@ -14,8 +14,9 @@ RelayController::RelayController(TemperatureState temperatureState,DallasTempera
 
 void RelayController::update() {
     float currentTemp = getCurrentTemperature();
-    if (targetTemp_State.temperature > currentTemp && targetTemp_State.state) {
+    if (targetTemp_State.temperature > currentTemp && targetTemp_State.state ==  1) {
         digitalWrite(relayPin, LOW);
+        Serial.println("Heating");
     } else {
         digitalWrite(relayPin, HIGH);
     }

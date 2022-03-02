@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include "global.h"
 #include "TemperatureController.h"
 #include "RelayController.h"
 #include "ServoController.h"
@@ -6,37 +7,41 @@
 #include "SerialCommunicationHandler.h"
 #include "HTPP_CommunicationHandler.h"
 
-TemperatureController* tempController;
-ICommunicationHandler* communicationHandler;
-
 //analog sensor
 OneWire oneWire(D5);
 DallasTemperature dallasTemperature(&oneWire);
 
+TemperatureController *tempController;
+ICommunicationHandler *communicationHandler;
+
 //functions for interrupts.
-IRAM_ATTR void useSerial(){
+IRAM_ATTR void useSerial() {
     Serial.println("UseSerial");
     communicationHandler = new SerialCommunicationHandler();
     detachInterrupt(D1);
     detachInterrupt(D2);
 }
-IRAM_ATTR void useHTTP(){
+
+IRAM_ATTR void useHTTP() {
     Serial.println("UseHTTP");
-    communicationHandler = new HTPP_CommunicationHandler("HuizeKordaat", "CoronaKanjers1", "http://192.168.178.229:8000/arduino");
+    communicationHandler = new HTPP_CommunicationHandler("HuizeKordaat", "CoronaKanjers1",
+                                                     "http://192.168.178.229:8000/arduino");
     detachInterrupt(D1);
     detachInterrupt(D2);
 }
-IRAM_ATTR void useRelay(){
+
+IRAM_ATTR void useRelay() {
     Serial.println("UseRelay");
-    tempController = new RelayController({40, false}, &dallasTemperature, D6);
-    tempController->begin();
+    tempController = new RelayController({0, false}, &dallasTemperature, D6);
+    TemperatureController::begin();
     detachInterrupt(D3);
     detachInterrupt(D4);
 }
-IRAM_ATTR void useServo(){
+
+IRAM_ATTR void useServo() {
     Serial.println("UseServo");
-    tempController = new ServoController({40, false}, &dallasTemperature, D6);
-    tempController->begin();
+    tempController = new ServoController({0, false}, &dallasTemperature, D6);
+    TemperatureController::begin();
     detachInterrupt(D3);
     detachInterrupt(D4);
 }
@@ -58,11 +63,13 @@ void setupKeypadInterrupt() {
 void setup() {
     Serial.begin(9600);
     setupKeypadInterrupt();
+    Serial.println("Select a communication method and temperature controller.");
+    Serial.println("S1: Serial, S2: HTTP, S3: Relay, S4: Servo");
 }
 
 void loop() {
     //Block updating if pointers are not set.
-    if (tempController && communicationHandler) {
+    if (tempController != NULL && communicationHandler != NULL) {
         tempController->update();
         communicationHandler->update();
     }

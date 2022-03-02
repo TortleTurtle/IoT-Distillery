@@ -4,6 +4,7 @@
 
 #ifndef MICRO_CONTROLLER_ICOMMUNICATIONHANDLER_H
 #define MICRO_CONTROLLER_ICOMMUNICATIONHANDLER_H
+
 #include <Arduino.h>
 #include "global.h"
 #include "TemperatureController.h"
