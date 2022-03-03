@@ -31,9 +31,9 @@ void HTPP_CommunicationHandler::receiveData() {
 
                 // Server responded with a file.
                 if (httpCode == HTTP_CODE_OK || httpCode == HTTP_CODE_MOVED_PERMANENTLY) {
-                    String receivedJSON = http.getString();
+                    JSON = http.getString();
                     Serial.print("Recieved payload: ");
-                    Serial.println(receivedJSON);
+                    Serial.println(JSON);
                     parseData();
                     http.end();
                 }

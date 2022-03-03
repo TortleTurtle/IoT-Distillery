@@ -7,7 +7,6 @@
 
 #include "ICommunicationHandler.h"
 
-//TODO: Implement Singleton Pattern.
 class SerialCommunicationHandler : public ICommunicationHandler {
 private:
 //atributes needed for storing and modifying incoming data.

@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include "global.h"
 #include "TemperatureController.h"
 #include "RelayController.h"
 #include "ServoController.h"

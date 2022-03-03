@@ -5,9 +5,9 @@
 #ifndef MICRO_CONTROLLER_TEMPERATURECONTROLLER_H
 #define MICRO_CONTROLLER_TEMPERATURECONTROLLER_H
 
+#include "global.h"
 #include "OneWire.h"
 #include "DallasTemperature.h"
-#include "global.h"
 
 
 class TemperatureController {
