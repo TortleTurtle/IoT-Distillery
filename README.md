@@ -17,7 +17,7 @@ The bridge between the Control Panel and the Micro Controller. Uses two routes "
 - POST "/", posts temperature data to the database.
 
 ## Control Panel
-VisualuUser interface made using react. Creates a graph using temperature data and their timestamps.
+Visual user interface made using react. Creates a graph using temperature data and their timestamps.
 
 ## SerialListener
 script that can recieve and send serial data to the Micro Controller. Handy if your board doesnt have WiFi capability. Connect your Micro Controller to a computer and run this script.
