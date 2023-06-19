@@ -11,6 +11,7 @@ The bridge between the Control Panel and the Micro Controller. Uses two routes "
 - GET "/:id", fetches temperature data with timestamps from a specific session.
 - PUT "/", used to update the state (start or stop) and set target temperature.
 - POST "/", used to create a new session.
+
 "/arduino" contains all request that are required for the microcontroller the function:
 - GET "/", fetches state and target temperature.
 - POST "/", posts temperature data to the database.
